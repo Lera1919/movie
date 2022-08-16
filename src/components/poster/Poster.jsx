@@ -1,5 +1,12 @@
-
 import './Poster.css'
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
 
 function Poster(props) {
 
@@ -24,16 +31,17 @@ function Poster(props) {
                     <div className='Poster-data'><span className='Poster-data-title'>Vote count:</span> <span className='Poster-data-accent'>{movies[index].vote_count}</span></div>
                     
                     <div className='Poster-carusel'>
-                        {movies.map((movie, key) => (
-                            <a href='#'>
-                               <div className='Poster-element'>
+                        <Swiper loop={true} modules={[Navigation]} navigation spaceBetween={30} slidesPerView={5}>
+                            {movies.map((movie, key) => (
+                            <SwiperSlide key={index}>
+                                <div className='Poster-element'>
                                     <img className='Poster-img' src={'https://image.tmdb.org/t/p/w220_and_h330_face'+ movie.poster_path} alt=''/>
                                     <div className='Poster-average'>{movie.vote_average}</div>
                                 </div>
-                            </a>
-                        ))}
+                            </SwiperSlide>
+                            ))}
+                        </Swiper>
                     </div>
-
                 </div>
             </div>
         </div>
